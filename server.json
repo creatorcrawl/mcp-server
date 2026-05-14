@@ -1,0 +1,42 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server.json",
+  "name": "creatorcrawl",
+  "version": "0.1.0",
+  "description": "Social media data MCP server for TikTok, Instagram, YouTube, LinkedIn, Twitter/X, and Reddit. 60+ tools across six platforms.",
+  "repository": {
+    "url": "https://github.com/creatorcrawl/mcp-server",
+    "source": "github"
+  },
+  "websiteUrl": "https://creatorcrawl.com",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@creatorcrawl/mcp",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" },
+      "runtimeArguments": [],
+      "environmentVariables": [
+        {
+          "name": "CREATORCRAWL_API_KEY",
+          "description": "CreatorCrawl API key (get a free key at https://creatorcrawl.com — 250 free credits, no card)",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "transportType": "streamable-http",
+      "url": "https://app.creatorcrawl.com/api/mcp",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "description": "CreatorCrawl API key",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

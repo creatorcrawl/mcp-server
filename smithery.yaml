@@ -1,0 +1,35 @@
+name: creatorcrawl
+displayName: "CreatorCrawl — Social Media Data MCP"
+description: >
+  60+ MCP tools for TikTok, Instagram, YouTube, LinkedIn, Twitter/X, and Reddit.
+  Profiles, posts, comments, transcripts, ads, search, and trending data as
+  structured JSON. Use stdio for local installs or the hosted streamable-http
+  endpoint at app.creatorcrawl.com/api/mcp.
+categories:
+  - social-media
+  - data-extraction
+  - analytics
+  - search
+license: MIT
+homepage: https://creatorcrawl.com
+repository: https://github.com/creatorcrawl/mcp-server
+
+build:
+  command: npm install -g @creatorcrawl/mcp
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: [apiKey]
+    properties:
+      apiKey:
+        type: string
+        title: CreatorCrawl API key
+        description: Get a free key at https://creatorcrawl.com (250 free credits, no card)
+  commandFunction: |-
+    (config) => ({
+      command: 'npx',
+      args: ['-y', '@creatorcrawl/mcp'],
+      env: { CREATORCRAWL_API_KEY: config.apiKey }
+    })
