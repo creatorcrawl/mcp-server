@@ -39,20 +39,24 @@ async function forward(method: string, params: unknown): Promise<JsonRpcResponse
 }
 
 const server = new Server(
-  { name: 'creatorcrawl', version: '0.1.0' },
+  { name: 'creatorcrawl', version: '0.2.0' },
   { capabilities: { tools: {} } },
 )
 
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   const upstream = await forward('tools/list', {})
   if (upstream.error) throw new Error(upstream.error.message)
-  return upstream.result as { tools: unknown[] }
+  return upstream.result as { tools: Array<Record<string, unknown>> }
 })
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const upstream = await forward('tools/call', request.params)
   if (upstream.error) throw new Error(upstream.error.message)
-  return upstream.result as { content: unknown[] }
+  return upstream.result as {
+    content: Array<Record<string, unknown>>
+    structuredContent?: Record<string, unknown>
+    isError?: boolean
+  }
 })
 
 const transport = new StdioServerTransport()

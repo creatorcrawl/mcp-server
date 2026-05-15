@@ -1,7 +1,7 @@
 {
   "$schema": "https://modelcontextprotocol.io/schemas/server.json",
   "name": "creatorcrawl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Social media data MCP server for TikTok, Instagram, YouTube, LinkedIn, Twitter/X, and Reddit. 60+ tools across six platforms.",
   "repository": {
     "url": "https://github.com/creatorcrawl/mcp-server",
@@ -12,7 +12,7 @@
     {
       "registryType": "npm",
       "identifier": "@creatorcrawl/mcp",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "transport": { "type": "stdio" },
       "runtimeArguments": [],
       "environmentVariables": [
